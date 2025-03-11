@@ -1,0 +1,5 @@
+{
+  "name": "@oven/typescript-bun-lib-dom",
+  "types": "./index.d.ts",
+  "version": "1.2.5"
+}
