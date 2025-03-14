@@ -2431,8 +2431,11 @@ interface WebTransportOptions {
     serverCertificateHashes?: WebTransportHash[];
 }
 
-interface WebTransportSendStreamOptions {
+interface WebTransportSendOptions {
     sendOrder?: number;
+}
+
+interface WebTransportSendStreamOptions extends WebTransportSendOptions {
 }
 
 interface WheelEventInit extends MouseEventInit {
@@ -3635,6 +3638,9 @@ declare var BroadcastChannel: {
     prototype: BroadcastChannel;
     new(name: string): BroadcastChannel;
 };
+
+interface BunGlobalSymbolRegistry {
+}
 
 /**
  * This Streams API interface provides a built-in byte length queuing strategy that can be used when constructing streams.
@@ -14862,7 +14868,7 @@ interface IDBObjectStore {
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/IDBObjectStore/keyPath)
      */
-    readonly keyPath: string | string[];
+    readonly keyPath: string | string[] | null;
     /**
      * Returns the name of the store.
      *
@@ -20041,6 +20047,7 @@ interface Response extends Body {
 }
 
 interface ResponseConstructor {
+    prototype: Response;
     /** [MDN Reference](https://developer.mozilla.org/docs/Web/API/Response/clone) */
     clone(): Response;
     /** [MDN Reference](https://developer.mozilla.org/docs/Web/API/Response/error_static) */
@@ -29626,7 +29633,7 @@ type AutoFillSection = `section-${string}`;
 type Base64URLString = string;
 type BigInteger = Uint8Array;
 type BlobPart = BufferSource | Blob | string;
-type BodyInit = ReadableStream | XMLHttpRequestBodyInit;
+type BodyInit = BunGlobalSymbolRegistry extends {BodyInit: infer T} ? T : never;
 type BufferSource = ArrayBufferView | ArrayBuffer;
 type COSEAlgorithmIdentifier = number;
 type CSSKeywordish = string | CSSKeywordValue;
@@ -29662,7 +29669,7 @@ type GLuint64 = number;
 type HTMLOrSVGImageElement = HTMLImageElement | SVGImageElement;
 type HTMLOrSVGScriptElement = HTMLScriptElement | SVGScriptElement;
 type HashAlgorithmIdentifier = AlgorithmIdentifier;
-type HeadersInit = [string, string][] | Record<string, string> | Headers;
+type HeadersInit = BunGlobalSymbolRegistry extends {HeadersInit: infer T} ? T : never;
 type IDBValidKey = number | string | Date | BufferSource | IDBValidKey[];
 type ImageBitmapSource = CanvasImageSource | Blob | ImageData;
 type ImageBufferSource = AllowSharedBufferSource | ReadableStream;
